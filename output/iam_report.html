@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IAM Security Report — AWS — 2026-04-02 10:03:23 UTC</title>
+<style>
+  :root {
+    --critical: #e74c3c;
+    --high: #e67e22;
+    --medium: #f1c40f;
+    --low: #2ecc71;
+    --bg: #f8f9fa;
+    --card: #ffffff;
+    --text: #2c3e50;
+    --border: #dee2e6;
+    --header-bg: #2c3e50;
+    --header-text: #ecf0f1;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+  header { background: var(--header-bg); color: var(--header-text); padding: 2rem 2.5rem; }
+  header h1 { font-size: 1.75rem; font-weight: 700; }
+  header p { opacity: 0.8; margin-top: 0.25rem; font-size: 0.9rem; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 2rem 1.5rem; }
+  .section { background: var(--card); border-radius: 8px; border: 1px solid var(--border); padding: 1.5rem; margin-bottom: 1.5rem; }
+  .section h2 { font-size: 1.2rem; font-weight: 600; margin-bottom: 1rem; border-bottom: 2px solid var(--border); padding-bottom: 0.5rem; }
+  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; margin-bottom: 1rem; }
+  .kpi { background: var(--bg); border-radius: 6px; padding: 1rem; text-align: center; border: 1px solid var(--border); }
+  .kpi .value { font-size: 2rem; font-weight: 700; }
+  .kpi .label { font-size: 0.8rem; color: #666; margin-top: 0.25rem; text-transform: uppercase; letter-spacing: 0.05em; }
+  .badge { display: inline-block; padding: 0.25em 0.6em; border-radius: 4px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; }
+  .badge-critical { background: var(--critical); color: white; }
+  .badge-high { background: var(--high); color: white; }
+  .badge-medium { background: var(--medium); color: #333; }
+  .badge-low { background: var(--low); color: white; }
+  .badge-p1 { background: var(--critical); color: white; }
+  .badge-p2 { background: var(--high); color: white; }
+  .badge-p3 { background: var(--medium); color: #333; }
+  /* Risk bar chart */
+  .chart-container { margin: 1rem 0; }
+  .chart-row { display: flex; align-items: center; margin-bottom: 0.5rem; gap: 0.75rem; }
+  .chart-label { min-width: 200px; max-width: 200px; font-size: 0.85rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .chart-bar-wrap { flex: 1; background: #e9ecef; border-radius: 4px; height: 22px; position: relative; }
+  .chart-bar { height: 100%; border-radius: 4px; transition: width 0.3s; }
+  .chart-score { min-width: 40px; text-align: right; font-size: 0.85rem; font-weight: 600; }
+  /* Tables */
+  table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+  th { background: var(--header-bg); color: var(--header-text); padding: 0.6rem 0.75rem; text-align: left; font-weight: 600; }
+  td { padding: 0.55rem 0.75rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f1f3f5; }
+  /* Collapsible JSON tree */
+  .json-tree { font-family: 'Courier New', Courier, monospace; font-size: 0.8rem; }
+  .json-key { color: #1a5276; font-weight: 600; cursor: pointer; }
+  .json-key::before { content: '▶ '; font-size: 0.7rem; }
+  .json-key.open::before { content: '▼ '; }
+  .json-children { display: none; padding-left: 1.25rem; border-left: 1px dashed #aaa; }
+  .json-children.visible { display: block; }
+  .json-str { color: #1e8449; }
+  .json-num { color: #d35400; }
+  .json-bool { color: #7d3c98; }
+  .json-null { color: #999; }
+  /* CLI snippets */
+  pre { background: #1e2b37; color: #a8d8ea; padding: 0.75rem 1rem; border-radius: 6px; font-size: 0.78rem; overflow-x: auto; margin-top: 0.25rem; white-space: pre-wrap; word-break: break-all; }
+  /* Responsive */
+  @media (max-width: 768px) { .chart-label { min-width: 120px; max-width: 120px; } }
+  .risk-summary-bar { height: 8px; border-radius: 4px; width: 100%; display: flex; overflow: hidden; margin-top: 0.5rem; }
+  .risk-summary-bar span { display: block; transition: width 0.3s; }
+</style>
+</head>
+<body>
+<header>
+  <h1>IAM Security Audit Report</h1>
+  <p>Provider: <strong>AWS</strong> &nbsp;|&nbsp;
+     Account: <strong>123456789012</strong> &nbsp;|&nbsp;
+     Generated: <strong>2026-04-02 10:03:23 UTC</strong></p>
+</header>
+
+<div class="container">
+
+  <!-- EXECUTIVE SUMMARY -->
+  <div class="section">
+    <h2>Executive Summary</h2>
+    <div class="kpi-grid">
+      <div class="kpi">
+        <div class="value" style="color:
+          var(--critical)
+          ">
+          CRITICAL
+        </div>
+        <div class="label">Overall Risk</div>
+      </div>
+      <div class="kpi">
+        <div class="value">8</div>
+        <div class="label">Resources Audited</div>
+      </div>
+      <div class="kpi">
+        <div class="value" style="color:var(--critical)">3</div>
+        <div class="label">Critical Findings</div>
+      </div>
+      <div class="kpi">
+        <div class="value" style="color:var(--high)">2</div>
+        <div class="label">High Findings</div>
+      </div>
+      <div class="kpi">
+        <div class="value" style="color:var(--medium)">0</div>
+        <div class="label">Medium Findings</div>
+      </div>
+      <div class="kpi">
+        <div class="value" style="color:var(--low)">3</div>
+        <div class="label">Low Findings</div>
+      </div>
+    </div>
+    
+    
+    <div class="risk-summary-bar">
+      <span style="width:37.5%;background:var(--critical)"></span>
+      <span style="width:25.0%;background:var(--high)"></span>
+      <span style="width:0.0%;background:var(--medium)"></span>
+      <span style="width:37.5%;background:var(--low)"></span>
+    </div>
+    
+  </div>
+
+  <!-- RISK SCORE CHART -->
+  <div class="section">
+    <h2>Top 10 Riskiest Resources — Score Chart</h2>
+    <div class="chart-container">
+      
+      
+      <div class="chart-row">
+        <div class="chart-label" title="ops-bob">ops-bob</div>
+        <div class="chart-bar-wrap">
+          <div class="chart-bar" style="width:100%;background:var(--critical)"></div>
+        </div>
+        <div class="chart-score">100</div>
+        <span class="badge badge-critical">CRITICAL</span>
+      </div>
+      
+      
+      <div class="chart-row">
+        <div class="chart-label" title="admin-user">admin-user</div>
+        <div class="chart-bar-wrap">
+          <div class="chart-bar" style="width:80%;background:var(--critical)"></div>
+        </div>
+        <div class="chart-score">80</div>
+        <span class="badge badge-critical">CRITICAL</span>
+      </div>
+      
+      
+      <div class="chart-row">
+        <div class="chart-label" title="cross-account-admin-role">cross-account-admin-role</div>
+        <div class="chart-bar-wrap">
+          <div class="chart-bar" style="width:75%;background:var(--critical)"></div>
+        </div>
+        <div class="chart-score">75</div>
+        <span class="badge badge-critical">CRITICAL</span>
+      </div>
+      
+      
+      <div class="chart-row">
+        <div class="chart-label" title="developer-alice">developer-alice</div>
+        <div class="chart-bar-wrap">
+          <div class="chart-bar" style="width:55%;background:var(--high)"></div>
+        </div>
+        <div class="chart-score">55</div>
+        <span class="badge badge-high">HIGH</span>
+      </div>
+      
+      
+      <div class="chart-row">
+        <div class="chart-label" title="ec2-instance-profile-role">ec2-instance-profile-role</div>
+        <div class="chart-bar-wrap">
+          <div class="chart-bar" style="width:50%;background:var(--high)"></div>
+        </div>
+        <div class="chart-score">50</div>
+        <span class="badge badge-high">HIGH</span>
+      </div>
+      
+      
+      <div class="chart-row">
+        <div class="chart-label" title="readonly-charlie">readonly-charlie</div>
+        <div class="chart-bar-wrap">
+          <div class="chart-bar" style="width:0%;background:var(--low)"></div>
+        </div>
+        <div class="chart-score">0</div>
+        <span class="badge badge-low">LOW</span>
+      </div>
+      
+      
+      <div class="chart-row">
+        <div class="chart-label" title="data-engineer-diana">data-engineer-diana</div>
+        <div class="chart-bar-wrap">
+          <div class="chart-bar" style="width:0%;background:var(--low)"></div>
+        </div>
+        <div class="chart-score">0</div>
+        <span class="badge badge-low">LOW</span>
+      </div>
+      
+      
+      <div class="chart-row">
+        <div class="chart-label" title="lambda-execution-role">lambda-execution-role</div>
+        <div class="chart-bar-wrap">
+          <div class="chart-bar" style="width:0%;background:var(--low)"></div>
+        </div>
+        <div class="chart-score">0</div>
+        <span class="badge badge-low">LOW</span>
+      </div>
+      
+    </div>
+  </div>
+
+  <!-- TOP 10 RISKIEST RESOURCES TABLE -->
+  <div class="section">
+    <h2>Top 10 Riskiest Resources</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Resource Name</th>
+          <th>Type</th>
+          <th>Risk Score</th>
+          <th>Risk Level</th>
+          <th>Key Risk Factors</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <tr>
+          <td>1</td>
+          <td><code>ops-bob</code></td>
+          <td>user</td>
+          <td><strong>100</strong></td>
+          <td><span class="badge badge-critical">CRITICAL</span></td>
+          <td>
+            
+            <span style="background:#e8f4f8;border-radius:3px;padding:2px 6px;font-size:0.78rem;display:inline-block;margin:1px">wildcard_action</span>
+            
+            <span style="background:#e8f4f8;border-radius:3px;padding:2px 6px;font-size:0.78rem;display:inline-block;margin:1px">wildcard_resource</span>
+            
+            <span style="background:#e8f4f8;border-radius:3px;padding:2px 6px;font-size:0.78rem;display:inline-block;margin:1px">broad_policy</span>
+            
+            <span style="background:#e8f4f8;border-radius:3px;padding:2px 6px;font-size:0.78rem;display:inline-block;margin:1px">stale_credential</span>
+            
+            <span style="background:#e8f4f8;border-radius:3px;padding:2px 6px;font-size:0.78rem;display:inline-block;margin:1px">no_mfa</span>
+            
+            <span style="background:#e8f4f8;border-radius:3px;padding:2px 6px;font-size:0.78rem;display:inline-block;margin:1px">stale_access_key</span>
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>2</td>
+          <td><code>admin-user</code></td>
+          <td>user</td>
+          <td><strong>80</strong></td>
+          <td><span class="badge badge-critical">CRITICAL</span></td>
+          <td>
+            
+            <span style="background:#e8f4f8;border-radius:3px;padding:2px 6px;font-size:0.78rem;display:inline-block;margin:1px">wildcard_action</span>
+            
+            <span style="background:#e8f4f8;border-radius:3px;padding:2px 6px;font-size:0.78rem;display:inline-block;margin:1px">broad_policy</span>
+            
+            <span style="background:#e8f4f8;border-radius:3px;padding:2px 6px;font-size:0.78rem;display:inline-block;margin:1px">no_mfa</span>
+            
+            <span style="background:#e8f4f8;border-radius:3px;padding:2px 6px;font-size:0.78rem;display:inline-block;margin:1px">stale_access_key</span>
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>3</td>
+          <td><code>cross-account-admin-role</code></td>
+          <td>role</td>
+          <td><strong>75</strong></td>
+          <td><span class="badge badge-critical">CRITICAL</span></td>
+          <td>
+            
+            <span style="background:#e8f4f8;border-radius:3px;padding:2px 6px;font-size:0.78rem;display:inline-block;margin:1px">wildcard_action</span>
+            
+            <span style="background:#e8f4f8;border-radius:3px;padding:2px 6px;font-size:0.78rem;display:inline-block;margin:1px">broad_policy</span>
+            
+            <span style="background:#e8f4f8;border-radius:3px;padding:2px 6px;font-size:0.78rem;display:inline-block;margin:1px">cross_account_trust</span>
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>4</td>
+          <td><code>developer-alice</code></td>
+          <td>user</td>
+          <td><strong>55</strong></td>
+          <td><span class="badge badge-high">HIGH</span></td>
+          <td>
+            
+            <span style="background:#e8f4f8;border-radius:3px;padding:2px 6px;font-size:0.78rem;display:inline-block;margin:1px">wildcard_action</span>
+            
+            <span style="background:#e8f4f8;border-radius:3px;padding:2px 6px;font-size:0.78rem;display:inline-block;margin:1px">broad_policy</span>
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>5</td>
+          <td><code>ec2-instance-profile-role</code></td>
+          <td>role</td>
+          <td><strong>50</strong></td>
+          <td><span class="badge badge-high">HIGH</span></td>
+          <td>
+            
+            <span style="background:#e8f4f8;border-radius:3px;padding:2px 6px;font-size:0.78rem;display:inline-block;margin:1px">wildcard_action</span>
+            
+            <span style="background:#e8f4f8;border-radius:3px;padding:2px 6px;font-size:0.78rem;display:inline-block;margin:1px">wildcard_resource</span>
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>6</td>
+          <td><code>readonly-charlie</code></td>
+          <td>user</td>
+          <td><strong>0</strong></td>
+          <td><span class="badge badge-low">LOW</span></td>
+          <td>
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>7</td>
+          <td><code>data-engineer-diana</code></td>
+          <td>user</td>
+          <td><strong>0</strong></td>
+          <td><span class="badge badge-low">LOW</span></td>
+          <td>
+            
+          </td>
+        </tr>
+        
+        <tr>
+          <td>8</td>
+          <td><code>lambda-execution-role</code></td>
+          <td>role</td>
+          <td><strong>0</strong></td>
+          <td><span class="badge badge-low">LOW</span></td>
+          <td>
+            
+          </td>
+        </tr>
+        
+      </tbody>
+    </table>
+  </div>
+
+  <!-- REMEDIATION PLAN TABLE -->
+  <div class="section">
+    <h2>Remediation Plan</h2>
+    <p style="margin-bottom:0.75rem;color:#555;font-size:0.875rem;">
+      Total actions: <strong>14</strong> &nbsp;|&nbsp;
+      <span class="badge badge-p1">P1: 11</span>&nbsp;
+      <span class="badge badge-p2">P2: 3</span>&nbsp;
+      <span class="badge badge-p3">P3: 0</span>
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Priority</th>
+          <th>Action</th>
+          <th>Resource</th>
+          <th>Description</th>
+          <th>Effort</th>
+          <th>CLI Snippet</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <tr>
+          <td><code>ACT-0006</code></td>
+          <td><span class="badge badge-p1">Priority.P1</span></td>
+          <td><code>ActionType.ROTATE_KEYS</code></td>
+          <td><code>ops-bob</code></td>
+          <td>Rotate stale access key for user &#39;ops-bob&#39;</td>
+          <td>Effort.LOW</td>
+          <td><details><summary>View</summary><pre># Deactivate old key
+aws iam update-access-key --user-name ops-bob --access-key-id &lt;ACCESS_KEY_ID&gt; --status Inactive
+# Create new key
+aws iam create-access-key --user-name ops-bob</pre></details></td>
+        </tr>
+        
+        <tr>
+          <td><code>ACT-0007</code></td>
+          <td><span class="badge badge-p1">Priority.P1</span></td>
+          <td><code>ActionType.ENABLE_MFA</code></td>
+          <td><code>ops-bob</code></td>
+          <td>Enable MFA for user &#39;ops-bob&#39;</td>
+          <td>Effort.LOW</td>
+          <td><details><summary>View</summary><pre># Create virtual MFA device
+aws iam create-virtual-mfa-device --virtual-mfa-device-name ops-bob-mfa \
+  --outfile /tmp/ops-bob-mfa.png --bootstrap-method QRCodePNG
+# Enable MFA for user (replace SERIAL_NUMBER and TOTP codes)
+aws iam enable-mfa-device --user-name ops-bob \
+  --serial-number &lt;SERIAL_NUMBER&gt; \
+  --authentication-code1 &lt;CODE1&gt; --authentication-code2 &lt;CODE2&gt;</pre></details></td>
+        </tr>
+        
+        <tr>
+          <td><code>ACT-0008</code></td>
+          <td><span class="badge badge-p1">Priority.P1</span></td>
+          <td><code>ActionType.REMOVE_POLICY</code></td>
+          <td><code>ops-bob</code></td>
+          <td>Remove overly broad policy from &#39;ops-bob&#39;</td>
+          <td>Effort.MEDIUM</td>
+          <td><details><summary>View</summary><pre>aws iam detach-user-policy --user-name ops-bob --policy-arn arn:aws:iam::aws:policy/AdministratorAccess</pre></details></td>
+        </tr>
+        
+        <tr>
+          <td><code>ACT-0009</code></td>
+          <td><span class="badge badge-p1">Priority.P1</span></td>
+          <td><code>ActionType.REPLACE_WILDCARD</code></td>
+          <td><code>ops-bob</code></td>
+          <td>Replace wildcard permissions for &#39;ops-bob&#39; with least-privilege policy</td>
+          <td>Effort.HIGH</td>
+          <td><details><summary>View</summary><pre># 1. Identify required permissions using IAM Access Analyzer
+aws accessanalyzer list-analyzed-resources --analyzer-arn &lt;ANALYZER_ARN&gt;
+# 2. Create least-privilege policy and attach it
+aws iam create-policy --policy-name ops-bob-least-priv \
+  --policy-document file://least_priv_policy.json
+aws iam attach-user-policy \
+  --user-name ops-bob \
+  --policy-arn arn:aws:iam::&lt;ACCOUNT_ID&gt;:policy/ops-bob-least-priv</pre></details></td>
+        </tr>
+        
+        <tr>
+          <td><code>ACT-0000</code></td>
+          <td><span class="badge badge-p1">Priority.P1</span></td>
+          <td><code>ActionType.ROTATE_KEYS</code></td>
+          <td><code>admin-user</code></td>
+          <td>Rotate stale access key for user &#39;admin-user&#39;</td>
+          <td>Effort.LOW</td>
+          <td><details><summary>View</summary><pre># Deactivate old key
+aws iam update-access-key --user-name admin-user --access-key-id &lt;ACCESS_KEY_ID&gt; --status Inactive
+# Create new key
+aws iam create-access-key --user-name admin-user</pre></details></td>
+        </tr>
+        
+        <tr>
+          <td><code>ACT-0001</code></td>
+          <td><span class="badge badge-p1">Priority.P1</span></td>
+          <td><code>ActionType.ENABLE_MFA</code></td>
+          <td><code>admin-user</code></td>
+          <td>Enable MFA for user &#39;admin-user&#39;</td>
+          <td>Effort.LOW</td>
+          <td><details><summary>View</summary><pre># Create virtual MFA device
+aws iam create-virtual-mfa-device --virtual-mfa-device-name admin-user-mfa \
+  --outfile /tmp/admin-user-mfa.png --bootstrap-method QRCodePNG
+# Enable MFA for user (replace SERIAL_NUMBER and TOTP codes)
+aws iam enable-mfa-device --user-name admin-user \
+  --serial-number &lt;SERIAL_NUMBER&gt; \
+  --authentication-code1 &lt;CODE1&gt; --authentication-code2 &lt;CODE2&gt;</pre></details></td>
+        </tr>
+        
+        <tr>
+          <td><code>ACT-0002</code></td>
+          <td><span class="badge badge-p1">Priority.P1</span></td>
+          <td><code>ActionType.REMOVE_POLICY</code></td>
+          <td><code>admin-user</code></td>
+          <td>Remove overly broad policy from &#39;admin-user&#39;</td>
+          <td>Effort.MEDIUM</td>
+          <td><details><summary>View</summary><pre>aws iam detach-user-policy --user-name admin-user --policy-arn arn:aws:iam::aws:policy/AdministratorAccess</pre></details></td>
+        </tr>
+        
+        <tr>
+          <td><code>ACT-0003</code></td>
+          <td><span class="badge badge-p1">Priority.P1</span></td>
+          <td><code>ActionType.REPLACE_WILDCARD</code></td>
+          <td><code>admin-user</code></td>
+          <td>Replace wildcard permissions for &#39;admin-user&#39; with least-privilege policy</td>
+          <td>Effort.HIGH</td>
+          <td><details><summary>View</summary><pre># 1. Identify required permissions using IAM Access Analyzer
+aws accessanalyzer list-analyzed-resources --analyzer-arn &lt;ANALYZER_ARN&gt;
+# 2. Create least-privilege policy and attach it
+aws iam create-policy --policy-name admin-user-least-priv \
+  --policy-document file://least_priv_policy.json
+aws iam attach-user-policy \
+  --user-name admin-user \
+  --policy-arn arn:aws:iam::&lt;ACCOUNT_ID&gt;:policy/admin-user-least-priv</pre></details></td>
+        </tr>
+        
+        <tr>
+          <td><code>ACT-0010</code></td>
+          <td><span class="badge badge-p1">Priority.P1</span></td>
+          <td><code>ActionType.REMOVE_POLICY</code></td>
+          <td><code>cross-account-admin-role</code></td>
+          <td>Remove overly broad policy from &#39;cross-account-admin-role&#39;</td>
+          <td>Effort.MEDIUM</td>
+          <td><details><summary>View</summary><pre>aws iam detach-role-policy --role-name cross-account-admin-role --policy-arn arn:aws:iam::aws:policy/AdministratorAccess</pre></details></td>
+        </tr>
+        
+        <tr>
+          <td><code>ACT-0011</code></td>
+          <td><span class="badge badge-p1">Priority.P1</span></td>
+          <td><code>ActionType.REPLACE_WILDCARD</code></td>
+          <td><code>cross-account-admin-role</code></td>
+          <td>Replace wildcard permissions for &#39;cross-account-admin-role&#39; with least-privilege policy</td>
+          <td>Effort.HIGH</td>
+          <td><details><summary>View</summary><pre># 1. Identify required permissions using IAM Access Analyzer
+aws accessanalyzer list-analyzed-resources --analyzer-arn &lt;ANALYZER_ARN&gt;
+# 2. Create least-privilege policy and attach it
+aws iam create-policy --policy-name cross-account-admin-role-least-priv \
+  --policy-document file://least_priv_policy.json
+aws iam attach-role-policy \
+  --role-name cross-account-admin-role \
+  --policy-arn arn:aws:iam::&lt;ACCOUNT_ID&gt;:policy/cross-account-admin-role-least-priv</pre></details></td>
+        </tr>
+        
+        <tr>
+          <td><code>ACT-0012</code></td>
+          <td><span class="badge badge-p1">Priority.P1</span></td>
+          <td><code>ActionType.RESTRICT_TRUST</code></td>
+          <td><code>cross-account-admin-role</code></td>
+          <td>Restrict cross-account trust for role &#39;cross-account-admin-role&#39;</td>
+          <td>Effort.MEDIUM</td>
+          <td><details><summary>View</summary><pre># Update trust policy to restrict to specific principals
+aws iam update-assume-role-policy --role-name cross-account-admin-role \
+  --policy-document &#39;{
+    &#34;Version&#34;: &#34;2012-10-17&#34;,
+    &#34;Statement&#34;: [{
+      &#34;Effect&#34;: &#34;Allow&#34;,
+      &#34;Principal&#34;: {&#34;AWS&#34;: &#34;arn:aws:iam::&lt;TRUSTED_ACCOUNT_ID&gt;:root&#34;},
+      &#34;Action&#34;: &#34;sts:AssumeRole&#34;,
+      &#34;Condition&#34;: {&#34;StringEquals&#34;: {&#34;sts:ExternalId&#34;: &#34;&lt;EXTERNAL_ID&gt;&#34;}}
+    }]
+  }&#39;</pre></details></td>
+        </tr>
+        
+        <tr>
+          <td><code>ACT-0004</code></td>
+          <td><span class="badge badge-p2">Priority.P2</span></td>
+          <td><code>ActionType.REMOVE_POLICY</code></td>
+          <td><code>developer-alice</code></td>
+          <td>Remove overly broad policy from &#39;developer-alice&#39;</td>
+          <td>Effort.MEDIUM</td>
+          <td><details><summary>View</summary><pre>aws iam detach-user-policy --user-name developer-alice --policy-arn arn:aws:iam::aws:policy/AdministratorAccess</pre></details></td>
+        </tr>
+        
+        <tr>
+          <td><code>ACT-0005</code></td>
+          <td><span class="badge badge-p2">Priority.P2</span></td>
+          <td><code>ActionType.REPLACE_WILDCARD</code></td>
+          <td><code>developer-alice</code></td>
+          <td>Replace wildcard permissions for &#39;developer-alice&#39; with least-privilege policy</td>
+          <td>Effort.HIGH</td>
+          <td><details><summary>View</summary><pre># 1. Identify required permissions using IAM Access Analyzer
+aws accessanalyzer list-analyzed-resources --analyzer-arn &lt;ANALYZER_ARN&gt;
+# 2. Create least-privilege policy and attach it
+aws iam create-policy --policy-name developer-alice-least-priv \
+  --policy-document file://least_priv_policy.json
+aws iam attach-user-policy \
+  --user-name developer-alice \
+  --policy-arn arn:aws:iam::&lt;ACCOUNT_ID&gt;:policy/developer-alice-least-priv</pre></details></td>
+        </tr>
+        
+        <tr>
+          <td><code>ACT-0013</code></td>
+          <td><span class="badge badge-p2">Priority.P2</span></td>
+          <td><code>ActionType.REPLACE_WILDCARD</code></td>
+          <td><code>ec2-instance-profile-role</code></td>
+          <td>Replace wildcard permissions for &#39;ec2-instance-profile-role&#39; with least-privilege policy</td>
+          <td>Effort.HIGH</td>
+          <td><details><summary>View</summary><pre># 1. Identify required permissions using IAM Access Analyzer
+aws accessanalyzer list-analyzed-resources --analyzer-arn &lt;ANALYZER_ARN&gt;
+# 2. Create least-privilege policy and attach it
+aws iam create-policy --policy-name ec2-instance-profile-role-least-priv \
+  --policy-document file://least_priv_policy.json
+aws iam attach-role-policy \
+  --role-name ec2-instance-profile-role \
+  --policy-arn arn:aws:iam::&lt;ACCOUNT_ID&gt;:policy/ec2-instance-profile-role-least-priv</pre></details></td>
+        </tr>
+        
+      </tbody>
+    </table>
+  </div>
+
+  <!-- PERMISSION MAP -->
+  <div class="section">
+    <h2>Permission Map (Interactive JSON)</h2>
+    <p style="margin-bottom:0.75rem;color:#555;font-size:0.875rem;">Click on keys to expand/collapse nodes.</p>
+    <div id="json-tree-root" class="json-tree"></div>
+  </div>
+
+</div>
+
+<script>
+(function() {
+  var data = {&#34;nodes&#34;: {&#34;AIDAAAAAAAAAAAAAAAAAA&#34;: {&#34;type&#34;: &#34;user&#34;, &#34;name&#34;: &#34;admin-user&#34;, &#34;provider&#34;: &#34;aws&#34;}, &#34;arn:aws:iam::aws:policy/AdministratorAccess&#34;: {&#34;type&#34;: &#34;policy&#34;, &#34;name&#34;: &#34;AdministratorAccess&#34;, &#34;provider&#34;: &#34;aws&#34;}, &#34;AIDAAAAAAAAAAAAAAAAAB&#34;: {&#34;type&#34;: &#34;user&#34;, &#34;name&#34;: &#34;developer-alice&#34;, &#34;provider&#34;: &#34;aws&#34;}, &#34;arn:aws:iam::aws:policy/AmazonS3FullAccess&#34;: {&#34;type&#34;: &#34;policy&#34;, &#34;name&#34;: &#34;AmazonS3FullAccess&#34;, &#34;provider&#34;: &#34;aws&#34;}, &#34;arn:aws:iam::aws:policy/AmazonEC2ReadOnlyAccess&#34;: {&#34;type&#34;: &#34;policy&#34;, &#34;name&#34;: &#34;AmazonEC2ReadOnlyAccess&#34;, &#34;provider&#34;: &#34;aws&#34;}, &#34;AIDAAAAAAAAAAAAAAAAAC&#34;: {&#34;type&#34;: &#34;user&#34;, &#34;name&#34;: &#34;ops-bob&#34;, &#34;provider&#34;: &#34;aws&#34;}, &#34;arn:aws:iam::aws:policy/PowerUserAccess&#34;: {&#34;type&#34;: &#34;policy&#34;, &#34;name&#34;: &#34;PowerUserAccess&#34;, &#34;provider&#34;: &#34;aws&#34;}, &#34;InlineS3Admin&#34;: {&#34;type&#34;: &#34;policy&#34;, &#34;name&#34;: &#34;InlineS3Admin&#34;, &#34;provider&#34;: &#34;aws&#34;}, &#34;AIDAAAAAAAAAAAAAAAAAD&#34;: {&#34;type&#34;: &#34;user&#34;, &#34;name&#34;: &#34;readonly-charlie&#34;, &#34;provider&#34;: &#34;aws&#34;}, &#34;arn:aws:iam::aws:policy/ReadOnlyAccess&#34;: {&#34;type&#34;: &#34;policy&#34;, &#34;name&#34;: &#34;ReadOnlyAccess&#34;, &#34;provider&#34;: &#34;aws&#34;}, &#34;AIDAAAAAAAAAAAAAAAAAE&#34;: {&#34;type&#34;: &#34;user&#34;, &#34;name&#34;: &#34;data-engineer-diana&#34;, &#34;provider&#34;: &#34;aws&#34;}, &#34;arn:aws:iam::aws:policy/AmazonAthenaFullAccess&#34;: {&#34;type&#34;: &#34;policy&#34;, &#34;name&#34;: &#34;AmazonAthenaFullAccess&#34;, &#34;provider&#34;: &#34;aws&#34;}, &#34;arn:aws:iam::aws:policy/AmazonGlueConsoleFullAccess&#34;: {&#34;type&#34;: &#34;policy&#34;, &#34;name&#34;: &#34;AmazonGlueConsoleFullAccess&#34;, &#34;provider&#34;: &#34;aws&#34;}, &#34;AROAAAAAAAAAAAAAAAAAA&#34;: {&#34;type&#34;: &#34;role&#34;, &#34;name&#34;: &#34;lambda-execution-role&#34;, &#34;provider&#34;: &#34;aws&#34;, &#34;is_cross_account&#34;: false, &#34;is_public&#34;: false}, &#34;arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole&#34;: {&#34;type&#34;: &#34;policy&#34;, &#34;name&#34;: &#34;AWSLambdaBasicExecutionRole&#34;, &#34;provider&#34;: &#34;aws&#34;}, &#34;trust::lambda.amazonaws.com&#34;: {&#34;type&#34;: &#34;trust_principal&#34;, &#34;name&#34;: &#34;lambda.amazonaws.com&#34;, &#34;provider&#34;: &#34;aws&#34;}, &#34;AROAAAAAAAAAAAAAAAAAB&#34;: {&#34;type&#34;: &#34;role&#34;, &#34;name&#34;: &#34;cross-account-admin-role&#34;, &#34;provider&#34;: &#34;aws&#34;, &#34;is_cross_account&#34;: true, &#34;is_public&#34;: false}, &#34;trust::arn:aws:iam::999999999999:root&#34;: {&#34;type&#34;: &#34;trust_principal&#34;, &#34;name&#34;: &#34;arn:aws:iam::999999999999:root&#34;, &#34;provider&#34;: &#34;aws&#34;}, &#34;AROAAAAAAAAAAAAAAAAAC&#34;: {&#34;type&#34;: &#34;role&#34;, &#34;name&#34;: &#34;ec2-instance-profile-role&#34;, &#34;provider&#34;: &#34;aws&#34;, &#34;is_cross_account&#34;: false, &#34;is_public&#34;: false}, &#34;WildcardS3Policy&#34;: {&#34;type&#34;: &#34;policy&#34;, &#34;name&#34;: &#34;WildcardS3Policy&#34;, &#34;provider&#34;: &#34;aws&#34;}, &#34;trust::ec2.amazonaws.com&#34;: {&#34;type&#34;: &#34;trust_principal&#34;, &#34;name&#34;: &#34;ec2.amazonaws.com&#34;, &#34;provider&#34;: &#34;aws&#34;}}, &#34;edges&#34;: [{&#34;from&#34;: &#34;AIDAAAAAAAAAAAAAAAAAA&#34;, &#34;to&#34;: &#34;arn:aws:iam::aws:policy/AdministratorAccess&#34;, &#34;access_level&#34;: &#34;admin&#34;, &#34;via&#34;: &#34;AdministratorAccess&#34;, &#34;actions&#34;: [], &#34;resources&#34;: []}, {&#34;from&#34;: &#34;AIDAAAAAAAAAAAAAAAAAB&#34;, &#34;to&#34;: &#34;arn:aws:iam::aws:policy/AmazonS3FullAccess&#34;, &#34;access_level&#34;: &#34;admin&#34;, &#34;via&#34;: &#34;AmazonS3FullAccess&#34;, &#34;actions&#34;: [], &#34;resources&#34;: []}, {&#34;from&#34;: &#34;AIDAAAAAAAAAAAAAAAAAB&#34;, &#34;to&#34;: &#34;arn:aws:iam::aws:policy/AmazonEC2ReadOnlyAccess&#34;, &#34;access_level&#34;: &#34;unknown&#34;, &#34;via&#34;: &#34;AmazonEC2ReadOnlyAccess&#34;, &#34;actions&#34;: [], &#34;resources&#34;: []}, {&#34;from&#34;: &#34;AIDAAAAAAAAAAAAAAAAAC&#34;, &#34;to&#34;: &#34;arn:aws:iam::aws:policy/PowerUserAccess&#34;, &#34;access_level&#34;: &#34;admin&#34;, &#34;via&#34;: &#34;PowerUserAccess&#34;, &#34;actions&#34;: [], &#34;resources&#34;: []}, {&#34;from&#34;: &#34;AIDAAAAAAAAAAAAAAAAAC&#34;, &#34;to&#34;: &#34;InlineS3Admin&#34;, &#34;access_level&#34;: &#34;admin&#34;, &#34;via&#34;: &#34;InlineS3Admin&#34;, &#34;actions&#34;: [&#34;s3:*&#34;], &#34;resources&#34;: [&#34;*&#34;]}, {&#34;from&#34;: &#34;AIDAAAAAAAAAAAAAAAAAD&#34;, &#34;to&#34;: &#34;arn:aws:iam::aws:policy/ReadOnlyAccess&#34;, &#34;access_level&#34;: &#34;unknown&#34;, &#34;via&#34;: &#34;ReadOnlyAccess&#34;, &#34;actions&#34;: [], &#34;resources&#34;: []}, {&#34;from&#34;: &#34;AIDAAAAAAAAAAAAAAAAAE&#34;, &#34;to&#34;: &#34;arn:aws:iam::aws:policy/AmazonAthenaFullAccess&#34;, &#34;access_level&#34;: &#34;unknown&#34;, &#34;via&#34;: &#34;AmazonAthenaFullAccess&#34;, &#34;actions&#34;: [], &#34;resources&#34;: []}, {&#34;from&#34;: &#34;AIDAAAAAAAAAAAAAAAAAE&#34;, &#34;to&#34;: &#34;arn:aws:iam::aws:policy/AmazonGlueConsoleFullAccess&#34;, &#34;access_level&#34;: &#34;unknown&#34;, &#34;via&#34;: &#34;AmazonGlueConsoleFullAccess&#34;, &#34;actions&#34;: [], &#34;resources&#34;: []}, {&#34;from&#34;: &#34;AROAAAAAAAAAAAAAAAAAA&#34;, &#34;to&#34;: &#34;arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole&#34;, &#34;access_level&#34;: &#34;unknown&#34;, &#34;via&#34;: &#34;AWSLambdaBasicExecutionRole&#34;, &#34;actions&#34;: [], &#34;resources&#34;: []}, {&#34;from&#34;: &#34;trust::lambda.amazonaws.com&#34;, &#34;to&#34;: &#34;AROAAAAAAAAAAAAAAAAAA&#34;, &#34;access_level&#34;: &#34;assume_role&#34;, &#34;via&#34;: &#34;sts:AssumeRole&#34;, &#34;actions&#34;: [&#34;sts:AssumeRole&#34;], &#34;resources&#34;: [&#34;arn:aws:iam::123456789012:role/lambda-execution-role&#34;]}, {&#34;from&#34;: &#34;AROAAAAAAAAAAAAAAAAAB&#34;, &#34;to&#34;: &#34;arn:aws:iam::aws:policy/AdministratorAccess&#34;, &#34;access_level&#34;: &#34;admin&#34;, &#34;via&#34;: &#34;AdministratorAccess&#34;, &#34;actions&#34;: [], &#34;resources&#34;: []}, {&#34;from&#34;: &#34;trust::arn:aws:iam::999999999999:root&#34;, &#34;to&#34;: &#34;AROAAAAAAAAAAAAAAAAAB&#34;, &#34;access_level&#34;: &#34;assume_role&#34;, &#34;via&#34;: &#34;sts:AssumeRole&#34;, &#34;actions&#34;: [&#34;sts:AssumeRole&#34;], &#34;resources&#34;: [&#34;arn:aws:iam::123456789012:role/cross-account-admin-role&#34;]}, {&#34;from&#34;: &#34;AROAAAAAAAAAAAAAAAAAC&#34;, &#34;to&#34;: &#34;WildcardS3Policy&#34;, &#34;access_level&#34;: &#34;admin&#34;, &#34;via&#34;: &#34;WildcardS3Policy&#34;, &#34;actions&#34;: [&#34;*&#34;], &#34;resources&#34;: [&#34;*&#34;]}, {&#34;from&#34;: &#34;trust::ec2.amazonaws.com&#34;, &#34;to&#34;: &#34;AROAAAAAAAAAAAAAAAAAC&#34;, &#34;access_level&#34;: &#34;assume_role&#34;, &#34;via&#34;: &#34;sts:AssumeRole&#34;, &#34;actions&#34;: [&#34;sts:AssumeRole&#34;], &#34;resources&#34;: [&#34;arn:aws:iam::123456789012:role/ec2-instance-profile-role&#34;]}]};
+
+  function escapeHtml(str) {
+    return String(str)
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function buildNode(value, depth) {
+    if (value === null) return '<span class="json-null">null</span>';
+    if (typeof value === 'boolean') return '<span class="json-bool">' + value + '</span>';
+    if (typeof value === 'number') return '<span class="json-num">' + value + '</span>';
+    if (typeof value === 'string') return '<span class="json-str">"' + escapeHtml(value) + '"</span>';
+
+    if (Array.isArray(value)) {
+      if (value.length === 0) return '<span>[]</span>';
+      var id = 'n' + Math.random().toString(36).substr(2,9);
+      var inner = value.map(function(v){ return '<div style="padding-left:1em">' + buildNode(v, depth+1) + '</div>'; }).join('');
+      return '<span class="json-key" data-target="' + id + '">[Array ' + value.length + ']</span>'
+        + '<div id="' + id + '" class="json-children">' + inner + '</div>';
+    }
+
+    if (typeof value === 'object') {
+      var keys = Object.keys(value);
+      if (keys.length === 0) return '<span>{}</span>';
+      var id2 = 'n' + Math.random().toString(36).substr(2,9);
+      var rows = keys.map(function(k) {
+        return '<div><span style="color:#1a5276;font-weight:600">' + escapeHtml(k) + ':</span> ' + buildNode(value[k], depth+1) + '</div>';
+      }).join('');
+      var preview = keys.slice(0,3).join(', ') + (keys.length > 3 ? '…' : '');
+      return '<span class="json-key" data-target="' + id2 + '">{' + escapeHtml(preview) + '}</span>'
+        + '<div id="' + id2 + '" class="json-children">' + rows + '</div>';
+    }
+    return String(value);
+  }
+
+  var root = document.getElementById('json-tree-root');
+  root.innerHTML = buildNode(data, 0);
+
+  root.addEventListener('click', function(e) {
+    var el = e.target;
+    if (!el.classList.contains('json-key')) return;
+    var tid = el.getAttribute('data-target');
+    if (!tid) return;
+    var child = document.getElementById(tid);
+    if (!child) return;
+    var open = child.classList.toggle('visible');
+    el.classList.toggle('open', open);
+  });
+})();
+</script>
+</body>
+</html>

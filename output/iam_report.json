@@ -1,0 +1,825 @@
+{
+  "provider": "aws",
+  "account_id": "123456789012",
+  "audited_at": "2026-04-02 10:03:23 UTC",
+  "risk_level": "CRITICAL",
+  "total_resources": 8,
+  "critical_count": 3,
+  "high_count": 2,
+  "medium_count": 0,
+  "low_count": 3,
+  "top_risks": [
+    {
+      "resource_id": "AIDAAAAAAAAAAAAAAAAAC",
+      "resource_name": "ops-bob",
+      "resource_type": "user",
+      "provider": "aws",
+      "score": 100,
+      "level": "CRITICAL",
+      "factors": [
+        {
+          "name": "wildcard_action",
+          "score_contribution": 35,
+          "description": "One or more policies allow wildcard (*) actions"
+        },
+        {
+          "name": "wildcard_resource",
+          "score_contribution": 15,
+          "description": "One or more policies apply to all resources (*)"
+        },
+        {
+          "name": "broad_policy",
+          "score_contribution": 20,
+          "description": "Overly broad policies attached: PowerUserAccess"
+        },
+        {
+          "name": "stale_credential",
+          "score_contribution": 15,
+          "description": "Last activity 182 days ago (threshold: 90)"
+        },
+        {
+          "name": "no_mfa",
+          "score_contribution": 10,
+          "description": "MFA is not enabled for this user"
+        },
+        {
+          "name": "stale_access_key",
+          "score_contribution": 15,
+          "description": "Access key AKIAIOSFODNN7EXAMPL3 unused for 1128 days"
+        }
+      ]
+    },
+    {
+      "resource_id": "AIDAAAAAAAAAAAAAAAAAA",
+      "resource_name": "admin-user",
+      "resource_type": "user",
+      "provider": "aws",
+      "score": 80,
+      "level": "CRITICAL",
+      "factors": [
+        {
+          "name": "wildcard_action",
+          "score_contribution": 35,
+          "description": "One or more policies allow wildcard (*) actions"
+        },
+        {
+          "name": "broad_policy",
+          "score_contribution": 20,
+          "description": "Overly broad policies attached: AdministratorAccess"
+        },
+        {
+          "name": "no_mfa",
+          "score_contribution": 10,
+          "description": "MFA is not enabled for this user"
+        },
+        {
+          "name": "stale_access_key",
+          "score_contribution": 15,
+          "description": "Access key AKIAIOSFODNN7EXAMPLE unused for 944 days"
+        }
+      ]
+    },
+    {
+      "resource_id": "AROAAAAAAAAAAAAAAAAAB",
+      "resource_name": "cross-account-admin-role",
+      "resource_type": "role",
+      "provider": "aws",
+      "score": 75,
+      "level": "CRITICAL",
+      "factors": [
+        {
+          "name": "wildcard_action",
+          "score_contribution": 35,
+          "description": "Role allows wildcard (*) actions"
+        },
+        {
+          "name": "broad_policy",
+          "score_contribution": 20,
+          "description": "Overly broad policies: AdministratorAccess"
+        },
+        {
+          "name": "cross_account_trust",
+          "score_contribution": 20,
+          "description": "Role trusts external account(s): arn:aws:iam::999999999999:root"
+        }
+      ]
+    },
+    {
+      "resource_id": "AIDAAAAAAAAAAAAAAAAAB",
+      "resource_name": "developer-alice",
+      "resource_type": "user",
+      "provider": "aws",
+      "score": 55,
+      "level": "HIGH",
+      "factors": [
+        {
+          "name": "wildcard_action",
+          "score_contribution": 35,
+          "description": "One or more policies allow wildcard (*) actions"
+        },
+        {
+          "name": "broad_policy",
+          "score_contribution": 20,
+          "description": "Overly broad policies attached: AmazonS3FullAccess"
+        }
+      ]
+    },
+    {
+      "resource_id": "AROAAAAAAAAAAAAAAAAAC",
+      "resource_name": "ec2-instance-profile-role",
+      "resource_type": "role",
+      "provider": "aws",
+      "score": 50,
+      "level": "HIGH",
+      "factors": [
+        {
+          "name": "wildcard_action",
+          "score_contribution": 35,
+          "description": "Role allows wildcard (*) actions"
+        },
+        {
+          "name": "wildcard_resource",
+          "score_contribution": 15,
+          "description": "Role applies to all resources (*)"
+        }
+      ]
+    },
+    {
+      "resource_id": "AIDAAAAAAAAAAAAAAAAAD",
+      "resource_name": "readonly-charlie",
+      "resource_type": "user",
+      "provider": "aws",
+      "score": 0,
+      "level": "LOW",
+      "factors": []
+    },
+    {
+      "resource_id": "AIDAAAAAAAAAAAAAAAAAE",
+      "resource_name": "data-engineer-diana",
+      "resource_type": "user",
+      "provider": "aws",
+      "score": 0,
+      "level": "LOW",
+      "factors": []
+    },
+    {
+      "resource_id": "AROAAAAAAAAAAAAAAAAAA",
+      "resource_name": "lambda-execution-role",
+      "resource_type": "role",
+      "provider": "aws",
+      "score": 0,
+      "level": "LOW",
+      "factors": []
+    }
+  ],
+  "all_scores": [
+    {
+      "resource_id": "AIDAAAAAAAAAAAAAAAAAA",
+      "resource_name": "admin-user",
+      "resource_type": "user",
+      "provider": "aws",
+      "score": 80,
+      "level": "CRITICAL",
+      "factors": [
+        {
+          "name": "wildcard_action",
+          "score_contribution": 35,
+          "description": "One or more policies allow wildcard (*) actions"
+        },
+        {
+          "name": "broad_policy",
+          "score_contribution": 20,
+          "description": "Overly broad policies attached: AdministratorAccess"
+        },
+        {
+          "name": "no_mfa",
+          "score_contribution": 10,
+          "description": "MFA is not enabled for this user"
+        },
+        {
+          "name": "stale_access_key",
+          "score_contribution": 15,
+          "description": "Access key AKIAIOSFODNN7EXAMPLE unused for 944 days"
+        }
+      ]
+    },
+    {
+      "resource_id": "AIDAAAAAAAAAAAAAAAAAB",
+      "resource_name": "developer-alice",
+      "resource_type": "user",
+      "provider": "aws",
+      "score": 55,
+      "level": "HIGH",
+      "factors": [
+        {
+          "name": "wildcard_action",
+          "score_contribution": 35,
+          "description": "One or more policies allow wildcard (*) actions"
+        },
+        {
+          "name": "broad_policy",
+          "score_contribution": 20,
+          "description": "Overly broad policies attached: AmazonS3FullAccess"
+        }
+      ]
+    },
+    {
+      "resource_id": "AIDAAAAAAAAAAAAAAAAAC",
+      "resource_name": "ops-bob",
+      "resource_type": "user",
+      "provider": "aws",
+      "score": 100,
+      "level": "CRITICAL",
+      "factors": [
+        {
+          "name": "wildcard_action",
+          "score_contribution": 35,
+          "description": "One or more policies allow wildcard (*) actions"
+        },
+        {
+          "name": "wildcard_resource",
+          "score_contribution": 15,
+          "description": "One or more policies apply to all resources (*)"
+        },
+        {
+          "name": "broad_policy",
+          "score_contribution": 20,
+          "description": "Overly broad policies attached: PowerUserAccess"
+        },
+        {
+          "name": "stale_credential",
+          "score_contribution": 15,
+          "description": "Last activity 182 days ago (threshold: 90)"
+        },
+        {
+          "name": "no_mfa",
+          "score_contribution": 10,
+          "description": "MFA is not enabled for this user"
+        },
+        {
+          "name": "stale_access_key",
+          "score_contribution": 15,
+          "description": "Access key AKIAIOSFODNN7EXAMPL3 unused for 1128 days"
+        }
+      ]
+    },
+    {
+      "resource_id": "AIDAAAAAAAAAAAAAAAAAD",
+      "resource_name": "readonly-charlie",
+      "resource_type": "user",
+      "provider": "aws",
+      "score": 0,
+      "level": "LOW",
+      "factors": []
+    },
+    {
+      "resource_id": "AIDAAAAAAAAAAAAAAAAAE",
+      "resource_name": "data-engineer-diana",
+      "resource_type": "user",
+      "provider": "aws",
+      "score": 0,
+      "level": "LOW",
+      "factors": []
+    },
+    {
+      "resource_id": "AROAAAAAAAAAAAAAAAAAA",
+      "resource_name": "lambda-execution-role",
+      "resource_type": "role",
+      "provider": "aws",
+      "score": 0,
+      "level": "LOW",
+      "factors": []
+    },
+    {
+      "resource_id": "AROAAAAAAAAAAAAAAAAAB",
+      "resource_name": "cross-account-admin-role",
+      "resource_type": "role",
+      "provider": "aws",
+      "score": 75,
+      "level": "CRITICAL",
+      "factors": [
+        {
+          "name": "wildcard_action",
+          "score_contribution": 35,
+          "description": "Role allows wildcard (*) actions"
+        },
+        {
+          "name": "broad_policy",
+          "score_contribution": 20,
+          "description": "Overly broad policies: AdministratorAccess"
+        },
+        {
+          "name": "cross_account_trust",
+          "score_contribution": 20,
+          "description": "Role trusts external account(s): arn:aws:iam::999999999999:root"
+        }
+      ]
+    },
+    {
+      "resource_id": "AROAAAAAAAAAAAAAAAAAC",
+      "resource_name": "ec2-instance-profile-role",
+      "resource_type": "role",
+      "provider": "aws",
+      "score": 50,
+      "level": "HIGH",
+      "factors": [
+        {
+          "name": "wildcard_action",
+          "score_contribution": 35,
+          "description": "Role allows wildcard (*) actions"
+        },
+        {
+          "name": "wildcard_resource",
+          "score_contribution": 15,
+          "description": "Role applies to all resources (*)"
+        }
+      ]
+    }
+  ],
+  "remediation": {
+    "total_actions": 14,
+    "p1_count": 11,
+    "p2_count": 3,
+    "p3_count": 0,
+    "actions": [
+      {
+        "action_id": "ACT-0006",
+        "resource_id": "AIDAAAAAAAAAAAAAAAAAC",
+        "resource_name": "ops-bob",
+        "resource_type": "user",
+        "provider": "aws",
+        "action_type": "ROTATE_KEYS",
+        "priority": "P1",
+        "effort": "LOW",
+        "description": "Rotate stale access key for user 'ops-bob'",
+        "cli_snippet": "# Deactivate old key\naws iam update-access-key --user-name ops-bob --access-key-id <ACCESS_KEY_ID> --status Inactive\n# Create new key\naws iam create-access-key --user-name ops-bob",
+        "risk_score": 100,
+        "related_factors": [
+          "stale_access_key"
+        ]
+      },
+      {
+        "action_id": "ACT-0007",
+        "resource_id": "AIDAAAAAAAAAAAAAAAAAC",
+        "resource_name": "ops-bob",
+        "resource_type": "user",
+        "provider": "aws",
+        "action_type": "ENABLE_MFA",
+        "priority": "P1",
+        "effort": "LOW",
+        "description": "Enable MFA for user 'ops-bob'",
+        "cli_snippet": "# Create virtual MFA device\naws iam create-virtual-mfa-device --virtual-mfa-device-name ops-bob-mfa \\\n  --outfile /tmp/ops-bob-mfa.png --bootstrap-method QRCodePNG\n# Enable MFA for user (replace SERIAL_NUMBER and TOTP codes)\naws iam enable-mfa-device --user-name ops-bob \\\n  --serial-number <SERIAL_NUMBER> \\\n  --authentication-code1 <CODE1> --authentication-code2 <CODE2>",
+        "risk_score": 100,
+        "related_factors": [
+          "no_mfa"
+        ]
+      },
+      {
+        "action_id": "ACT-0008",
+        "resource_id": "AIDAAAAAAAAAAAAAAAAAC",
+        "resource_name": "ops-bob",
+        "resource_type": "user",
+        "provider": "aws",
+        "action_type": "REMOVE_POLICY",
+        "priority": "P1",
+        "effort": "MEDIUM",
+        "description": "Remove overly broad policy from 'ops-bob'",
+        "cli_snippet": "aws iam detach-user-policy --user-name ops-bob --policy-arn arn:aws:iam::aws:policy/AdministratorAccess",
+        "risk_score": 100,
+        "related_factors": [
+          "broad_policy"
+        ]
+      },
+      {
+        "action_id": "ACT-0009",
+        "resource_id": "AIDAAAAAAAAAAAAAAAAAC",
+        "resource_name": "ops-bob",
+        "resource_type": "user",
+        "provider": "aws",
+        "action_type": "REPLACE_WILDCARD",
+        "priority": "P1",
+        "effort": "HIGH",
+        "description": "Replace wildcard permissions for 'ops-bob' with least-privilege policy",
+        "cli_snippet": "# 1. Identify required permissions using IAM Access Analyzer\naws accessanalyzer list-analyzed-resources --analyzer-arn <ANALYZER_ARN>\n# 2. Create least-privilege policy and attach it\naws iam create-policy --policy-name ops-bob-least-priv \\\n  --policy-document file://least_priv_policy.json\naws iam attach-user-policy \\\n  --user-name ops-bob \\\n  --policy-arn arn:aws:iam::<ACCOUNT_ID>:policy/ops-bob-least-priv",
+        "risk_score": 100,
+        "related_factors": [
+          "wildcard_action",
+          "wildcard_resource"
+        ]
+      },
+      {
+        "action_id": "ACT-0000",
+        "resource_id": "AIDAAAAAAAAAAAAAAAAAA",
+        "resource_name": "admin-user",
+        "resource_type": "user",
+        "provider": "aws",
+        "action_type": "ROTATE_KEYS",
+        "priority": "P1",
+        "effort": "LOW",
+        "description": "Rotate stale access key for user 'admin-user'",
+        "cli_snippet": "# Deactivate old key\naws iam update-access-key --user-name admin-user --access-key-id <ACCESS_KEY_ID> --status Inactive\n# Create new key\naws iam create-access-key --user-name admin-user",
+        "risk_score": 80,
+        "related_factors": [
+          "stale_access_key"
+        ]
+      },
+      {
+        "action_id": "ACT-0001",
+        "resource_id": "AIDAAAAAAAAAAAAAAAAAA",
+        "resource_name": "admin-user",
+        "resource_type": "user",
+        "provider": "aws",
+        "action_type": "ENABLE_MFA",
+        "priority": "P1",
+        "effort": "LOW",
+        "description": "Enable MFA for user 'admin-user'",
+        "cli_snippet": "# Create virtual MFA device\naws iam create-virtual-mfa-device --virtual-mfa-device-name admin-user-mfa \\\n  --outfile /tmp/admin-user-mfa.png --bootstrap-method QRCodePNG\n# Enable MFA for user (replace SERIAL_NUMBER and TOTP codes)\naws iam enable-mfa-device --user-name admin-user \\\n  --serial-number <SERIAL_NUMBER> \\\n  --authentication-code1 <CODE1> --authentication-code2 <CODE2>",
+        "risk_score": 80,
+        "related_factors": [
+          "no_mfa"
+        ]
+      },
+      {
+        "action_id": "ACT-0002",
+        "resource_id": "AIDAAAAAAAAAAAAAAAAAA",
+        "resource_name": "admin-user",
+        "resource_type": "user",
+        "provider": "aws",
+        "action_type": "REMOVE_POLICY",
+        "priority": "P1",
+        "effort": "MEDIUM",
+        "description": "Remove overly broad policy from 'admin-user'",
+        "cli_snippet": "aws iam detach-user-policy --user-name admin-user --policy-arn arn:aws:iam::aws:policy/AdministratorAccess",
+        "risk_score": 80,
+        "related_factors": [
+          "broad_policy"
+        ]
+      },
+      {
+        "action_id": "ACT-0003",
+        "resource_id": "AIDAAAAAAAAAAAAAAAAAA",
+        "resource_name": "admin-user",
+        "resource_type": "user",
+        "provider": "aws",
+        "action_type": "REPLACE_WILDCARD",
+        "priority": "P1",
+        "effort": "HIGH",
+        "description": "Replace wildcard permissions for 'admin-user' with least-privilege policy",
+        "cli_snippet": "# 1. Identify required permissions using IAM Access Analyzer\naws accessanalyzer list-analyzed-resources --analyzer-arn <ANALYZER_ARN>\n# 2. Create least-privilege policy and attach it\naws iam create-policy --policy-name admin-user-least-priv \\\n  --policy-document file://least_priv_policy.json\naws iam attach-user-policy \\\n  --user-name admin-user \\\n  --policy-arn arn:aws:iam::<ACCOUNT_ID>:policy/admin-user-least-priv",
+        "risk_score": 80,
+        "related_factors": [
+          "wildcard_action",
+          "wildcard_resource"
+        ]
+      },
+      {
+        "action_id": "ACT-0010",
+        "resource_id": "AROAAAAAAAAAAAAAAAAAB",
+        "resource_name": "cross-account-admin-role",
+        "resource_type": "role",
+        "provider": "aws",
+        "action_type": "REMOVE_POLICY",
+        "priority": "P1",
+        "effort": "MEDIUM",
+        "description": "Remove overly broad policy from 'cross-account-admin-role'",
+        "cli_snippet": "aws iam detach-role-policy --role-name cross-account-admin-role --policy-arn arn:aws:iam::aws:policy/AdministratorAccess",
+        "risk_score": 75,
+        "related_factors": [
+          "broad_policy"
+        ]
+      },
+      {
+        "action_id": "ACT-0011",
+        "resource_id": "AROAAAAAAAAAAAAAAAAAB",
+        "resource_name": "cross-account-admin-role",
+        "resource_type": "role",
+        "provider": "aws",
+        "action_type": "REPLACE_WILDCARD",
+        "priority": "P1",
+        "effort": "HIGH",
+        "description": "Replace wildcard permissions for 'cross-account-admin-role' with least-privilege policy",
+        "cli_snippet": "# 1. Identify required permissions using IAM Access Analyzer\naws accessanalyzer list-analyzed-resources --analyzer-arn <ANALYZER_ARN>\n# 2. Create least-privilege policy and attach it\naws iam create-policy --policy-name cross-account-admin-role-least-priv \\\n  --policy-document file://least_priv_policy.json\naws iam attach-role-policy \\\n  --role-name cross-account-admin-role \\\n  --policy-arn arn:aws:iam::<ACCOUNT_ID>:policy/cross-account-admin-role-least-priv",
+        "risk_score": 75,
+        "related_factors": [
+          "wildcard_action",
+          "wildcard_resource"
+        ]
+      },
+      {
+        "action_id": "ACT-0012",
+        "resource_id": "AROAAAAAAAAAAAAAAAAAB",
+        "resource_name": "cross-account-admin-role",
+        "resource_type": "role",
+        "provider": "aws",
+        "action_type": "RESTRICT_TRUST",
+        "priority": "P1",
+        "effort": "MEDIUM",
+        "description": "Restrict cross-account trust for role 'cross-account-admin-role'",
+        "cli_snippet": "# Update trust policy to restrict to specific principals\naws iam update-assume-role-policy --role-name cross-account-admin-role \\\n  --policy-document '{\n    \"Version\": \"2012-10-17\",\n    \"Statement\": [{\n      \"Effect\": \"Allow\",\n      \"Principal\": {\"AWS\": \"arn:aws:iam::<TRUSTED_ACCOUNT_ID>:root\"},\n      \"Action\": \"sts:AssumeRole\",\n      \"Condition\": {\"StringEquals\": {\"sts:ExternalId\": \"<EXTERNAL_ID>\"}}\n    }]\n  }'",
+        "risk_score": 75,
+        "related_factors": [
+          "cross_account_trust"
+        ]
+      },
+      {
+        "action_id": "ACT-0004",
+        "resource_id": "AIDAAAAAAAAAAAAAAAAAB",
+        "resource_name": "developer-alice",
+        "resource_type": "user",
+        "provider": "aws",
+        "action_type": "REMOVE_POLICY",
+        "priority": "P2",
+        "effort": "MEDIUM",
+        "description": "Remove overly broad policy from 'developer-alice'",
+        "cli_snippet": "aws iam detach-user-policy --user-name developer-alice --policy-arn arn:aws:iam::aws:policy/AdministratorAccess",
+        "risk_score": 55,
+        "related_factors": [
+          "broad_policy"
+        ]
+      },
+      {
+        "action_id": "ACT-0005",
+        "resource_id": "AIDAAAAAAAAAAAAAAAAAB",
+        "resource_name": "developer-alice",
+        "resource_type": "user",
+        "provider": "aws",
+        "action_type": "REPLACE_WILDCARD",
+        "priority": "P2",
+        "effort": "HIGH",
+        "description": "Replace wildcard permissions for 'developer-alice' with least-privilege policy",
+        "cli_snippet": "# 1. Identify required permissions using IAM Access Analyzer\naws accessanalyzer list-analyzed-resources --analyzer-arn <ANALYZER_ARN>\n# 2. Create least-privilege policy and attach it\naws iam create-policy --policy-name developer-alice-least-priv \\\n  --policy-document file://least_priv_policy.json\naws iam attach-user-policy \\\n  --user-name developer-alice \\\n  --policy-arn arn:aws:iam::<ACCOUNT_ID>:policy/developer-alice-least-priv",
+        "risk_score": 55,
+        "related_factors": [
+          "wildcard_action",
+          "wildcard_resource"
+        ]
+      },
+      {
+        "action_id": "ACT-0013",
+        "resource_id": "AROAAAAAAAAAAAAAAAAAC",
+        "resource_name": "ec2-instance-profile-role",
+        "resource_type": "role",
+        "provider": "aws",
+        "action_type": "REPLACE_WILDCARD",
+        "priority": "P2",
+        "effort": "HIGH",
+        "description": "Replace wildcard permissions for 'ec2-instance-profile-role' with least-privilege policy",
+        "cli_snippet": "# 1. Identify required permissions using IAM Access Analyzer\naws accessanalyzer list-analyzed-resources --analyzer-arn <ANALYZER_ARN>\n# 2. Create least-privilege policy and attach it\naws iam create-policy --policy-name ec2-instance-profile-role-least-priv \\\n  --policy-document file://least_priv_policy.json\naws iam attach-role-policy \\\n  --role-name ec2-instance-profile-role \\\n  --policy-arn arn:aws:iam::<ACCOUNT_ID>:policy/ec2-instance-profile-role-least-priv",
+        "risk_score": 50,
+        "related_factors": [
+          "wildcard_action",
+          "wildcard_resource"
+        ]
+      }
+    ]
+  },
+  "permission_map": {
+    "nodes": {
+      "AIDAAAAAAAAAAAAAAAAAA": {
+        "type": "user",
+        "name": "admin-user",
+        "provider": "aws"
+      },
+      "arn:aws:iam::aws:policy/AdministratorAccess": {
+        "type": "policy",
+        "name": "AdministratorAccess",
+        "provider": "aws"
+      },
+      "AIDAAAAAAAAAAAAAAAAAB": {
+        "type": "user",
+        "name": "developer-alice",
+        "provider": "aws"
+      },
+      "arn:aws:iam::aws:policy/AmazonS3FullAccess": {
+        "type": "policy",
+        "name": "AmazonS3FullAccess",
+        "provider": "aws"
+      },
+      "arn:aws:iam::aws:policy/AmazonEC2ReadOnlyAccess": {
+        "type": "policy",
+        "name": "AmazonEC2ReadOnlyAccess",
+        "provider": "aws"
+      },
+      "AIDAAAAAAAAAAAAAAAAAC": {
+        "type": "user",
+        "name": "ops-bob",
+        "provider": "aws"
+      },
+      "arn:aws:iam::aws:policy/PowerUserAccess": {
+        "type": "policy",
+        "name": "PowerUserAccess",
+        "provider": "aws"
+      },
+      "InlineS3Admin": {
+        "type": "policy",
+        "name": "InlineS3Admin",
+        "provider": "aws"
+      },
+      "AIDAAAAAAAAAAAAAAAAAD": {
+        "type": "user",
+        "name": "readonly-charlie",
+        "provider": "aws"
+      },
+      "arn:aws:iam::aws:policy/ReadOnlyAccess": {
+        "type": "policy",
+        "name": "ReadOnlyAccess",
+        "provider": "aws"
+      },
+      "AIDAAAAAAAAAAAAAAAAAE": {
+        "type": "user",
+        "name": "data-engineer-diana",
+        "provider": "aws"
+      },
+      "arn:aws:iam::aws:policy/AmazonAthenaFullAccess": {
+        "type": "policy",
+        "name": "AmazonAthenaFullAccess",
+        "provider": "aws"
+      },
+      "arn:aws:iam::aws:policy/AmazonGlueConsoleFullAccess": {
+        "type": "policy",
+        "name": "AmazonGlueConsoleFullAccess",
+        "provider": "aws"
+      },
+      "AROAAAAAAAAAAAAAAAAAA": {
+        "type": "role",
+        "name": "lambda-execution-role",
+        "provider": "aws",
+        "is_cross_account": false,
+        "is_public": false
+      },
+      "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole": {
+        "type": "policy",
+        "name": "AWSLambdaBasicExecutionRole",
+        "provider": "aws"
+      },
+      "trust::lambda.amazonaws.com": {
+        "type": "trust_principal",
+        "name": "lambda.amazonaws.com",
+        "provider": "aws"
+      },
+      "AROAAAAAAAAAAAAAAAAAB": {
+        "type": "role",
+        "name": "cross-account-admin-role",
+        "provider": "aws",
+        "is_cross_account": true,
+        "is_public": false
+      },
+      "trust::arn:aws:iam::999999999999:root": {
+        "type": "trust_principal",
+        "name": "arn:aws:iam::999999999999:root",
+        "provider": "aws"
+      },
+      "AROAAAAAAAAAAAAAAAAAC": {
+        "type": "role",
+        "name": "ec2-instance-profile-role",
+        "provider": "aws",
+        "is_cross_account": false,
+        "is_public": false
+      },
+      "WildcardS3Policy": {
+        "type": "policy",
+        "name": "WildcardS3Policy",
+        "provider": "aws"
+      },
+      "trust::ec2.amazonaws.com": {
+        "type": "trust_principal",
+        "name": "ec2.amazonaws.com",
+        "provider": "aws"
+      }
+    },
+    "edges": [
+      {
+        "from": "AIDAAAAAAAAAAAAAAAAAA",
+        "to": "arn:aws:iam::aws:policy/AdministratorAccess",
+        "access_level": "admin",
+        "via": "AdministratorAccess",
+        "actions": [],
+        "resources": []
+      },
+      {
+        "from": "AIDAAAAAAAAAAAAAAAAAB",
+        "to": "arn:aws:iam::aws:policy/AmazonS3FullAccess",
+        "access_level": "admin",
+        "via": "AmazonS3FullAccess",
+        "actions": [],
+        "resources": []
+      },
+      {
+        "from": "AIDAAAAAAAAAAAAAAAAAB",
+        "to": "arn:aws:iam::aws:policy/AmazonEC2ReadOnlyAccess",
+        "access_level": "unknown",
+        "via": "AmazonEC2ReadOnlyAccess",
+        "actions": [],
+        "resources": []
+      },
+      {
+        "from": "AIDAAAAAAAAAAAAAAAAAC",
+        "to": "arn:aws:iam::aws:policy/PowerUserAccess",
+        "access_level": "admin",
+        "via": "PowerUserAccess",
+        "actions": [],
+        "resources": []
+      },
+      {
+        "from": "AIDAAAAAAAAAAAAAAAAAC",
+        "to": "InlineS3Admin",
+        "access_level": "admin",
+        "via": "InlineS3Admin",
+        "actions": [
+          "s3:*"
+        ],
+        "resources": [
+          "*"
+        ]
+      },
+      {
+        "from": "AIDAAAAAAAAAAAAAAAAAD",
+        "to": "arn:aws:iam::aws:policy/ReadOnlyAccess",
+        "access_level": "unknown",
+        "via": "ReadOnlyAccess",
+        "actions": [],
+        "resources": []
+      },
+      {
+        "from": "AIDAAAAAAAAAAAAAAAAAE",
+        "to": "arn:aws:iam::aws:policy/AmazonAthenaFullAccess",
+        "access_level": "unknown",
+        "via": "AmazonAthenaFullAccess",
+        "actions": [],
+        "resources": []
+      },
+      {
+        "from": "AIDAAAAAAAAAAAAAAAAAE",
+        "to": "arn:aws:iam::aws:policy/AmazonGlueConsoleFullAccess",
+        "access_level": "unknown",
+        "via": "AmazonGlueConsoleFullAccess",
+        "actions": [],
+        "resources": []
+      },
+      {
+        "from": "AROAAAAAAAAAAAAAAAAAA",
+        "to": "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole",
+        "access_level": "unknown",
+        "via": "AWSLambdaBasicExecutionRole",
+        "actions": [],
+        "resources": []
+      },
+      {
+        "from": "trust::lambda.amazonaws.com",
+        "to": "AROAAAAAAAAAAAAAAAAAA",
+        "access_level": "assume_role",
+        "via": "sts:AssumeRole",
+        "actions": [
+          "sts:AssumeRole"
+        ],
+        "resources": [
+          "arn:aws:iam::123456789012:role/lambda-execution-role"
+        ]
+      },
+      {
+        "from": "AROAAAAAAAAAAAAAAAAAB",
+        "to": "arn:aws:iam::aws:policy/AdministratorAccess",
+        "access_level": "admin",
+        "via": "AdministratorAccess",
+        "actions": [],
+        "resources": []
+      },
+      {
+        "from": "trust::arn:aws:iam::999999999999:root",
+        "to": "AROAAAAAAAAAAAAAAAAAB",
+        "access_level": "assume_role",
+        "via": "sts:AssumeRole",
+        "actions": [
+          "sts:AssumeRole"
+        ],
+        "resources": [
+          "arn:aws:iam::123456789012:role/cross-account-admin-role"
+        ]
+      },
+      {
+        "from": "AROAAAAAAAAAAAAAAAAAC",
+        "to": "WildcardS3Policy",
+        "access_level": "admin",
+        "via": "WildcardS3Policy",
+        "actions": [
+          "*"
+        ],
+        "resources": [
+          "*"
+        ]
+      },
+      {
+        "from": "trust::ec2.amazonaws.com",
+        "to": "AROAAAAAAAAAAAAAAAAAC",
+        "access_level": "assume_role",
+        "via": "sts:AssumeRole",
+        "actions": [
+          "sts:AssumeRole"
+        ],
+        "resources": [
+          "arn:aws:iam::123456789012:role/ec2-instance-profile-role"
+        ]
+      }
+    ]
+  }
+}
