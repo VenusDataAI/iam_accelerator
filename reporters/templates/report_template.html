@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IAM Security Report — {{ provider | upper }} — {{ audited_at }}</title>
+<style>
+  :root {
+    --critical: #e74c3c;
+    --high: #e67e22;
+    --medium: #f1c40f;
+    --low: #2ecc71;
+    --bg: #f8f9fa;
+    --card: #ffffff;
+    --text: #2c3e50;
+    --border: #dee2e6;
+    --header-bg: #2c3e50;
+    --header-text: #ecf0f1;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+  header { background: var(--header-bg); color: var(--header-text); padding: 2rem 2.5rem; }
+  header h1 { font-size: 1.75rem; font-weight: 700; }
+  header p { opacity: 0.8; margin-top: 0.25rem; font-size: 0.9rem; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 2rem 1.5rem; }
+  .section { background: var(--card); border-radius: 8px; border: 1px solid var(--border); padding: 1.5rem; margin-bottom: 1.5rem; }
+  .section h2 { font-size: 1.2rem; font-weight: 600; margin-bottom: 1rem; border-bottom: 2px solid var(--border); padding-bottom: 0.5rem; }
+  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; margin-bottom: 1rem; }
+  .kpi { background: var(--bg); border-radius: 6px; padding: 1rem; text-align: center; border: 1px solid var(--border); }
+  .kpi .value { font-size: 2rem; font-weight: 700; }
+  .kpi .label { font-size: 0.8rem; color: #666; margin-top: 0.25rem; text-transform: uppercase; letter-spacing: 0.05em; }
+  .badge { display: inline-block; padding: 0.25em 0.6em; border-radius: 4px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; }
+  .badge-critical { background: var(--critical); color: white; }
+  .badge-high { background: var(--high); color: white; }
+  .badge-medium { background: var(--medium); color: #333; }
+  .badge-low { background: var(--low); color: white; }
+  .badge-p1 { background: var(--critical); color: white; }
+  .badge-p2 { background: var(--high); color: white; }
+  .badge-p3 { background: var(--medium); color: #333; }
+  /* Risk bar chart */
+  .chart-container { margin: 1rem 0; }
+  .chart-row { display: flex; align-items: center; margin-bottom: 0.5rem; gap: 0.75rem; }
+  .chart-label { min-width: 200px; max-width: 200px; font-size: 0.85rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .chart-bar-wrap { flex: 1; background: #e9ecef; border-radius: 4px; height: 22px; position: relative; }
+  .chart-bar { height: 100%; border-radius: 4px; transition: width 0.3s; }
+  .chart-score { min-width: 40px; text-align: right; font-size: 0.85rem; font-weight: 600; }
+  /* Tables */
+  table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+  th { background: var(--header-bg); color: var(--header-text); padding: 0.6rem 0.75rem; text-align: left; font-weight: 600; }
+  td { padding: 0.55rem 0.75rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f1f3f5; }
+  /* Collapsible JSON tree */
+  .json-tree { font-family: 'Courier New', Courier, monospace; font-size: 0.8rem; }
+  .json-key { color: #1a5276; font-weight: 600; cursor: pointer; }
+  .json-key::before { content: '▶ '; font-size: 0.7rem; }
+  .json-key.open::before { content: '▼ '; }
+  .json-children { display: none; padding-left: 1.25rem; border-left: 1px dashed #aaa; }
+  .json-children.visible { display: block; }
+  .json-str { color: #1e8449; }
+  .json-num { color: #d35400; }
+  .json-bool { color: #7d3c98; }
+  .json-null { color: #999; }
+  /* CLI snippets */
+  pre { background: #1e2b37; color: #a8d8ea; padding: 0.75rem 1rem; border-radius: 6px; font-size: 0.78rem; overflow-x: auto; margin-top: 0.25rem; white-space: pre-wrap; word-break: break-all; }
+  /* Responsive */
+  @media (max-width: 768px) { .chart-label { min-width: 120px; max-width: 120px; } }
+  .risk-summary-bar { height: 8px; border-radius: 4px; width: 100%; display: flex; overflow: hidden; margin-top: 0.5rem; }
+  .risk-summary-bar span { display: block; transition: width 0.3s; }
+</style>
+</head>
+<body>
+<header>
+  <h1>IAM Security Audit Report</h1>
+  <p>Provider: <strong>{{ provider | upper }}</strong> &nbsp;|&nbsp;
+     Account: <strong>{{ account_id or "N/A" }}</strong> &nbsp;|&nbsp;
+     Generated: <strong>{{ audited_at }}</strong></p>
+</header>
+
+<div class="container">
+
+  <!-- EXECUTIVE SUMMARY -->
+  <div class="section">
+    <h2>Executive Summary</h2>
+    <div class="kpi-grid">
+      <div class="kpi">
+        <div class="value" style="color:
+          {% if risk_level == 'CRITICAL' %}var(--critical)
+          {% elif risk_level == 'HIGH' %}var(--high)
+          {% elif risk_level == 'MEDIUM' %}var(--medium)
+          {% else %}var(--low){% endif %}">
+          {{ risk_level }}
+        </div>
+        <div class="label">Overall Risk</div>
+      </div>
+      <div class="kpi">
+        <div class="value">{{ total_resources }}</div>
+        <div class="label">Resources Audited</div>
+      </div>
+      <div class="kpi">
+        <div class="value" style="color:var(--critical)">{{ critical_count }}</div>
+        <div class="label">Critical Findings</div>
+      </div>
+      <div class="kpi">
+        <div class="value" style="color:var(--high)">{{ high_count }}</div>
+        <div class="label">High Findings</div>
+      </div>
+      <div class="kpi">
+        <div class="value" style="color:var(--medium)">{{ medium_count }}</div>
+        <div class="label">Medium Findings</div>
+      </div>
+      <div class="kpi">
+        <div class="value" style="color:var(--low)">{{ low_count }}</div>
+        <div class="label">Low Findings</div>
+      </div>
+    </div>
+    {% set total_findings = critical_count + high_count + medium_count + low_count %}
+    {% if total_findings > 0 %}
+    <div class="risk-summary-bar">
+      <span style="width:{{ (critical_count / total_findings * 100) | round(1) }}%;background:var(--critical)"></span>
+      <span style="width:{{ (high_count / total_findings * 100) | round(1) }}%;background:var(--high)"></span>
+      <span style="width:{{ (medium_count / total_findings * 100) | round(1) }}%;background:var(--medium)"></span>
+      <span style="width:{{ (low_count / total_findings * 100) | round(1) }}%;background:var(--low)"></span>
+    </div>
+    {% endif %}
+  </div>
+
+  <!-- RISK SCORE CHART -->
+  <div class="section">
+    <h2>Top 10 Riskiest Resources — Score Chart</h2>
+    <div class="chart-container">
+      {% for item in top_risks %}
+      {% set color =
+        'var(--critical)' if item.score >= 75 else
+        'var(--high)' if item.score >= 50 else
+        'var(--medium)' if item.score >= 25 else
+        'var(--low)' %}
+      <div class="chart-row">
+        <div class="chart-label" title="{{ item.resource_name }}">{{ item.resource_name }}</div>
+        <div class="chart-bar-wrap">
+          <div class="chart-bar" style="width:{{ item.score }}%;background:{{ color }}"></div>
+        </div>
+        <div class="chart-score">{{ item.score }}</div>
+        <span class="badge badge-{{ item.level | lower }}">{{ item.level }}</span>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- TOP 10 RISKIEST RESOURCES TABLE -->
+  <div class="section">
+    <h2>Top 10 Riskiest Resources</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Resource Name</th>
+          <th>Type</th>
+          <th>Risk Score</th>
+          <th>Risk Level</th>
+          <th>Key Risk Factors</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in top_risks %}
+        <tr>
+          <td>{{ loop.index }}</td>
+          <td><code>{{ item.resource_name }}</code></td>
+          <td>{{ item.resource_type }}</td>
+          <td><strong>{{ item.score }}</strong></td>
+          <td><span class="badge badge-{{ item.level | lower }}">{{ item.level }}</span></td>
+          <td>
+            {% for f in item.factors %}
+            <span style="background:#e8f4f8;border-radius:3px;padding:2px 6px;font-size:0.78rem;display:inline-block;margin:1px">{{ f.name }}</span>
+            {% endfor %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- REMEDIATION PLAN TABLE -->
+  <div class="section">
+    <h2>Remediation Plan</h2>
+    <p style="margin-bottom:0.75rem;color:#555;font-size:0.875rem;">
+      Total actions: <strong>{{ remediation.total_actions }}</strong> &nbsp;|&nbsp;
+      <span class="badge badge-p1">P1: {{ remediation.p1_count }}</span>&nbsp;
+      <span class="badge badge-p2">P2: {{ remediation.p2_count }}</span>&nbsp;
+      <span class="badge badge-p3">P3: {{ remediation.p3_count }}</span>
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Priority</th>
+          <th>Action</th>
+          <th>Resource</th>
+          <th>Description</th>
+          <th>Effort</th>
+          <th>CLI Snippet</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for action in remediation.actions %}
+        <tr>
+          <td><code>{{ action.action_id }}</code></td>
+          <td><span class="badge badge-{{ action.priority | lower }}">{{ action.priority }}</span></td>
+          <td><code>{{ action.action_type }}</code></td>
+          <td><code>{{ action.resource_name }}</code></td>
+          <td>{{ action.description }}</td>
+          <td>{{ action.effort }}</td>
+          <td><details><summary>View</summary><pre>{{ action.cli_snippet }}</pre></details></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- PERMISSION MAP -->
+  <div class="section">
+    <h2>Permission Map (Interactive JSON)</h2>
+    <p style="margin-bottom:0.75rem;color:#555;font-size:0.875rem;">Click on keys to expand/collapse nodes.</p>
+    <div id="json-tree-root" class="json-tree"></div>
+  </div>
+
+</div>
+
+<script>
+(function() {
+  var data = {{ permission_map_json }};
+
+  function escapeHtml(str) {
+    return String(str)
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+      .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function buildNode(value, depth) {
+    if (value === null) return '<span class="json-null">null</span>';
+    if (typeof value === 'boolean') return '<span class="json-bool">' + value + '</span>';
+    if (typeof value === 'number') return '<span class="json-num">' + value + '</span>';
+    if (typeof value === 'string') return '<span class="json-str">"' + escapeHtml(value) + '"</span>';
+
+    if (Array.isArray(value)) {
+      if (value.length === 0) return '<span>[]</span>';
+      var id = 'n' + Math.random().toString(36).substr(2,9);
+      var inner = value.map(function(v){ return '<div style="padding-left:1em">' + buildNode(v, depth+1) + '</div>'; }).join('');
+      return '<span class="json-key" data-target="' + id + '">[Array ' + value.length + ']</span>'
+        + '<div id="' + id + '" class="json-children">' + inner + '</div>';
+    }
+
+    if (typeof value === 'object') {
+      var keys = Object.keys(value);
+      if (keys.length === 0) return '<span>{}</span>';
+      var id2 = 'n' + Math.random().toString(36).substr(2,9);
+      var rows = keys.map(function(k) {
+        return '<div><span style="color:#1a5276;font-weight:600">' + escapeHtml(k) + ':</span> ' + buildNode(value[k], depth+1) + '</div>';
+      }).join('');
+      var preview = keys.slice(0,3).join(', ') + (keys.length > 3 ? '…' : '');
+      return '<span class="json-key" data-target="' + id2 + '">{' + escapeHtml(preview) + '}</span>'
+        + '<div id="' + id2 + '" class="json-children">' + rows + '</div>';
+    }
+    return String(value);
+  }
+
+  var root = document.getElementById('json-tree-root');
+  root.innerHTML = buildNode(data, 0);
+
+  root.addEventListener('click', function(e) {
+    var el = e.target;
+    if (!el.classList.contains('json-key')) return;
+    var tid = el.getAttribute('data-target');
+    if (!tid) return;
+    var child = document.getElementById(tid);
+    if (!child) return;
+    var open = child.classList.toggle('visible');
+    el.classList.toggle('open', open);
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+{
+  "roleAssignments": [
+    {
+      "id": "/subscriptions/aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee/providers/Microsoft.Authorization/roleAssignments/11111111-1111-1111-1111-111111111111",
+      "name": "11111111-1111-1111-1111-111111111111",
+      "type": "Microsoft.Authorization/roleAssignments",
+      "scope": "/subscriptions/aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+      "roleDefinitionId": "/subscriptions/aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee/providers/Microsoft.Authorization/roleDefinitions/8e3af657-a8ff-443c-a75c-2fe8c4bcb635",
+      "principalId": "user-object-id-0001",
+      "principalType": "User",
+      "principalName": "globaladmin@contoso.com",
+      "roleDefinitionName": "Owner",
+      "createdOn": "2021-03-01T00:00:00Z",
+      "updatedOn": "2021-03-01T00:00:00Z"
+    },
+    {
+      "id": "/subscriptions/aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee/resourceGroups/prod-rg/providers/Microsoft.Authorization/roleAssignments/22222222-2222-2222-2222-222222222222",
+      "name": "22222222-2222-2222-2222-222222222222",
+      "type": "Microsoft.Authorization/roleAssignments",
+      "scope": "/subscriptions/aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee/resourceGroups/prod-rg",
+      "roleDefinitionId": "/subscriptions/aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee/providers/Microsoft.Authorization/roleDefinitions/acdd72a7-3385-48ef-bd42-f606fba81ae7",
+      "principalId": "user-object-id-0002",
+      "principalType": "User",
+      "principalName": "developer@contoso.com",
+      "roleDefinitionName": "Reader",
+      "createdOn": "2023-06-15T00:00:00Z",
+      "updatedOn": "2023-06-15T00:00:00Z"
+    },
+    {
+      "id": "/subscriptions/aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee/resourceGroups/dev-rg/providers/Microsoft.Authorization/roleAssignments/33333333-3333-3333-3333-333333333333",
+      "name": "33333333-3333-3333-3333-333333333333",
+      "type": "Microsoft.Authorization/roleAssignments",
+      "scope": "/subscriptions/aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee/resourceGroups/dev-rg",
+      "roleDefinitionId": "/subscriptions/aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c",
+      "principalId": "sp-object-id-0003",
+      "principalType": "ServicePrincipal",
+      "principalName": "automation-service-principal",
+      "roleDefinitionName": "Contributor",
+      "createdOn": "2022-11-10T00:00:00Z",
+      "updatedOn": "2022-11-10T00:00:00Z"
+    },
+    {
+      "id": "/subscriptions/aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee/resourceGroups/shared-rg/providers/Microsoft.Authorization/roleAssignments/44444444-4444-4444-4444-444444444444",
+      "name": "44444444-4444-4444-4444-444444444444",
+      "type": "Microsoft.Authorization/roleAssignments",
+      "scope": "/subscriptions/aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee/resourceGroups/shared-rg",
+      "roleDefinitionId": "/subscriptions/aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee/providers/Microsoft.Authorization/roleDefinitions/custom-role-id-001",
+      "principalId": "group-object-id-0004",
+      "principalType": "Group",
+      "principalName": "security-team-group",
+      "roleDefinitionName": "CustomSecurityRole",
+      "createdOn": "2024-02-20T00:00:00Z",
+      "updatedOn": "2024-02-20T00:00:00Z"
+    }
+  ],
+  "roleDefinitions": [
+    {
+      "id": "/subscriptions/aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee/providers/Microsoft.Authorization/roleDefinitions/8e3af657-a8ff-443c-a75c-2fe8c4bcb635",
+      "name": "8e3af657-a8ff-443c-a75c-2fe8c4bcb635",
+      "type": "Microsoft.Authorization/roleDefinitions",
+      "roleName": "Owner",
+      "roleType": "BuiltInRole",
+      "permissions": [
+        {
+          "actions": ["*"],
+          "notActions": [],
+          "dataActions": [],
+          "notDataActions": []
+        }
+      ]
+    },
+    {
+      "id": "/subscriptions/aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee/providers/Microsoft.Authorization/roleDefinitions/acdd72a7-3385-48ef-bd42-f606fba81ae7",
+      "name": "acdd72a7-3385-48ef-bd42-f606fba81ae7",
+      "type": "Microsoft.Authorization/roleDefinitions",
+      "roleName": "Reader",
+      "roleType": "BuiltInRole",
+      "permissions": [
+        {
+          "actions": ["*/read"],
+          "notActions": [],
+          "dataActions": [],
+          "notDataActions": []
+        }
+      ]
+    },
+    {
+      "id": "/subscriptions/aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c",
+      "name": "b24988ac-6180-42a0-ab88-20f7382dd24c",
+      "type": "Microsoft.Authorization/roleDefinitions",
+      "roleName": "Contributor",
+      "roleType": "BuiltInRole",
+      "permissions": [
+        {
+          "actions": ["*"],
+          "notActions": [
+            "Microsoft.Authorization/*/Delete",
+            "Microsoft.Authorization/*/Write"
+          ],
+          "dataActions": [],
+          "notDataActions": []
+        }
+      ]
+    },
+    {
+      "id": "/subscriptions/aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee/providers/Microsoft.Authorization/roleDefinitions/custom-role-id-001",
+      "name": "custom-role-id-001",
+      "type": "Microsoft.Authorization/roleDefinitions",
+      "roleName": "CustomSecurityRole",
+      "roleType": "CustomRole",
+      "permissions": [
+        {
+          "actions": [
+            "Microsoft.Security/*/read",
+            "Microsoft.Security/assessments/write",
+            "Microsoft.Authorization/*/read"
+          ],
+          "notActions": [],
+          "dataActions": [],
+          "notDataActions": []
+        }
+      ]
+    }
+  ],
+  "servicePrincipals": [
+    {
+      "id": "sp-object-id-0003",
+      "appId": "aaaabbbb-cccc-dddd-eeee-ffffaaaabbbb",
+      "displayName": "automation-service-principal",
+      "servicePrincipalType": "Application",
+      "createdDateTime": "2022-11-10T00:00:00Z",
+      "appOwnerOrganizationId": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
+    }
+  ]
+}

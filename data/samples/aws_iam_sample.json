@@ -1,0 +1,293 @@
+{
+  "UserDetailList": [
+    {
+      "UserId": "AIDAAAAAAAAAAAAAAAAAA",
+      "UserName": "admin-user",
+      "Arn": "arn:aws:iam::123456789012:user/admin-user",
+      "CreateDate": "2021-01-15T10:00:00Z",
+      "PasswordLastUsed": "2026-03-01T08:00:00Z",
+      "MFADevices": [],
+      "AttachedManagedPolicies": [
+        {
+          "PolicyName": "AdministratorAccess",
+          "PolicyArn": "arn:aws:iam::aws:policy/AdministratorAccess"
+        }
+      ],
+      "UserPolicyList": [],
+      "AccessKeys": [
+        {
+          "AccessKeyId": "AKIAIOSFODNN7EXAMPLE",
+          "Status": "Active",
+          "CreateDate": "2023-06-01T00:00:00Z",
+          "LastUsedDate": "2023-09-01T00:00:00Z"
+        }
+      ]
+    },
+    {
+      "UserId": "AIDAAAAAAAAAAAAAAAAAB",
+      "UserName": "developer-alice",
+      "Arn": "arn:aws:iam::123456789012:user/developer-alice",
+      "CreateDate": "2022-03-10T09:00:00Z",
+      "PasswordLastUsed": "2026-03-28T14:00:00Z",
+      "MFADevices": [
+        {
+          "SerialNumber": "arn:aws:iam::123456789012:mfa/developer-alice",
+          "UserName": "developer-alice"
+        }
+      ],
+      "AttachedManagedPolicies": [
+        {
+          "PolicyName": "AmazonS3FullAccess",
+          "PolicyArn": "arn:aws:iam::aws:policy/AmazonS3FullAccess"
+        },
+        {
+          "PolicyName": "AmazonEC2ReadOnlyAccess",
+          "PolicyArn": "arn:aws:iam::aws:policy/AmazonEC2ReadOnlyAccess"
+        }
+      ],
+      "UserPolicyList": [],
+      "AccessKeys": [
+        {
+          "AccessKeyId": "AKIAIOSFODNN7EXAMPL2",
+          "Status": "Active",
+          "CreateDate": "2025-11-01T00:00:00Z",
+          "LastUsedDate": "2026-03-20T10:00:00Z"
+        }
+      ]
+    },
+    {
+      "UserId": "AIDAAAAAAAAAAAAAAAAAC",
+      "UserName": "ops-bob",
+      "Arn": "arn:aws:iam::123456789012:user/ops-bob",
+      "CreateDate": "2021-06-20T11:00:00Z",
+      "PasswordLastUsed": "2025-10-01T12:00:00Z",
+      "MFADevices": [],
+      "AttachedManagedPolicies": [
+        {
+          "PolicyName": "PowerUserAccess",
+          "PolicyArn": "arn:aws:iam::aws:policy/PowerUserAccess"
+        }
+      ],
+      "UserPolicyList": [
+        {
+          "PolicyName": "InlineS3Admin",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Action": "s3:*",
+                "Resource": "*"
+              }
+            ]
+          }
+        }
+      ],
+      "AccessKeys": [
+        {
+          "AccessKeyId": "AKIAIOSFODNN7EXAMPL3",
+          "Status": "Active",
+          "CreateDate": "2023-01-10T00:00:00Z",
+          "LastUsedDate": "2023-03-01T00:00:00Z"
+        }
+      ]
+    },
+    {
+      "UserId": "AIDAAAAAAAAAAAAAAAAAD",
+      "UserName": "readonly-charlie",
+      "Arn": "arn:aws:iam::123456789012:user/readonly-charlie",
+      "CreateDate": "2023-05-01T08:00:00Z",
+      "PasswordLastUsed": "2026-03-25T09:00:00Z",
+      "MFADevices": [
+        {
+          "SerialNumber": "arn:aws:iam::123456789012:mfa/readonly-charlie",
+          "UserName": "readonly-charlie"
+        }
+      ],
+      "AttachedManagedPolicies": [
+        {
+          "PolicyName": "ReadOnlyAccess",
+          "PolicyArn": "arn:aws:iam::aws:policy/ReadOnlyAccess"
+        }
+      ],
+      "UserPolicyList": [],
+      "AccessKeys": []
+    },
+    {
+      "UserId": "AIDAAAAAAAAAAAAAAAAAE",
+      "UserName": "data-engineer-diana",
+      "Arn": "arn:aws:iam::123456789012:user/data-engineer-diana",
+      "CreateDate": "2022-09-15T14:00:00Z",
+      "PasswordLastUsed": "2026-04-01T07:30:00Z",
+      "MFADevices": [
+        {
+          "SerialNumber": "arn:aws:iam::123456789012:mfa/data-engineer-diana",
+          "UserName": "data-engineer-diana"
+        }
+      ],
+      "AttachedManagedPolicies": [
+        {
+          "PolicyName": "AmazonAthenaFullAccess",
+          "PolicyArn": "arn:aws:iam::aws:policy/AmazonAthenaFullAccess"
+        },
+        {
+          "PolicyName": "AmazonGlueConsoleFullAccess",
+          "PolicyArn": "arn:aws:iam::aws:policy/AmazonGlueConsoleFullAccess"
+        }
+      ],
+      "UserPolicyList": [],
+      "AccessKeys": [
+        {
+          "AccessKeyId": "AKIAIOSFODNN7EXAMPL5",
+          "Status": "Active",
+          "CreateDate": "2025-09-01T00:00:00Z",
+          "LastUsedDate": "2026-03-30T15:00:00Z"
+        }
+      ]
+    }
+  ],
+  "RoleDetailList": [
+    {
+      "RoleId": "AROAAAAAAAAAAAAAAAAAA",
+      "RoleName": "lambda-execution-role",
+      "Arn": "arn:aws:iam::123456789012:role/lambda-execution-role",
+      "CreateDate": "2022-01-01T00:00:00Z",
+      "AssumeRolePolicyDocument": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Principal": {
+              "Service": "lambda.amazonaws.com"
+            },
+            "Action": "sts:AssumeRole"
+          }
+        ]
+      },
+      "AttachedManagedPolicies": [
+        {
+          "PolicyName": "AWSLambdaBasicExecutionRole",
+          "PolicyArn": "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+        }
+      ],
+      "RolePolicyList": []
+    },
+    {
+      "RoleId": "AROAAAAAAAAAAAAAAAAAB",
+      "RoleName": "cross-account-admin-role",
+      "Arn": "arn:aws:iam::123456789012:role/cross-account-admin-role",
+      "CreateDate": "2021-11-05T00:00:00Z",
+      "AssumeRolePolicyDocument": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Principal": {
+              "AWS": "arn:aws:iam::999999999999:root"
+            },
+            "Action": "sts:AssumeRole"
+          }
+        ]
+      },
+      "AttachedManagedPolicies": [
+        {
+          "PolicyName": "AdministratorAccess",
+          "PolicyArn": "arn:aws:iam::aws:policy/AdministratorAccess"
+        }
+      ],
+      "RolePolicyList": []
+    },
+    {
+      "RoleId": "AROAAAAAAAAAAAAAAAAAC",
+      "RoleName": "ec2-instance-profile-role",
+      "Arn": "arn:aws:iam::123456789012:role/ec2-instance-profile-role",
+      "CreateDate": "2023-02-14T00:00:00Z",
+      "AssumeRolePolicyDocument": {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Principal": {
+              "Service": "ec2.amazonaws.com"
+            },
+            "Action": "sts:AssumeRole"
+          }
+        ]
+      },
+      "AttachedManagedPolicies": [],
+      "RolePolicyList": [
+        {
+          "PolicyName": "WildcardS3Policy",
+          "PolicyDocument": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Action": "*",
+                "Resource": "*"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "Policies": [
+    {
+      "PolicyId": "ANPAAAAAAAAAAAAAAAAAA",
+      "PolicyName": "CustomWildcardPolicy",
+      "Arn": "arn:aws:iam::123456789012:policy/CustomWildcardPolicy",
+      "CreateDate": "2021-08-01T00:00:00Z",
+      "UpdateDate": "2021-08-01T00:00:00Z",
+      "AttachmentCount": 2,
+      "DefaultVersionId": "v1",
+      "PolicyVersionList": [
+        {
+          "VersionId": "v1",
+          "IsDefaultVersion": true,
+          "Document": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Action": "*",
+                "Resource": "*"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "PolicyId": "ANPAAAAAAAAAAAAAAAAAB",
+      "PolicyName": "LeastPrivilegePolicy",
+      "Arn": "arn:aws:iam::123456789012:policy/LeastPrivilegePolicy",
+      "CreateDate": "2024-01-10T00:00:00Z",
+      "UpdateDate": "2024-01-10T00:00:00Z",
+      "AttachmentCount": 1,
+      "DefaultVersionId": "v1",
+      "PolicyVersionList": [
+        {
+          "VersionId": "v1",
+          "IsDefaultVersion": true,
+          "Document": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Action": [
+                  "s3:GetObject",
+                  "s3:ListBucket"
+                ],
+                "Resource": [
+                  "arn:aws:s3:::my-specific-bucket",
+                  "arn:aws:s3:::my-specific-bucket/*"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
