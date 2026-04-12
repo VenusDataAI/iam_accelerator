@@ -1,6 +1,6 @@
 # IAM Accelerator
 
-A production-ready **Multi-Cloud IAM Strategy Accelerator** that audits, scores, and remediates IAM risk across **AWS** and **Azure** — with zero real cloud credentials needed for a full demo run.
+A production-ready **Multi-Cloud IAM Strategy Accelerator** that audits, scores, and remediates IAM risk across **AWS** and **Azure**, with zero real cloud credentials needed for a full demo run.
 
 ---
 
@@ -115,7 +115,7 @@ result = auditor.run()
 
 ## Terraform Deployment
 
-### AWS — Auditor Role
+### AWS: Auditor Role
 
 ```bash
 cd terraform/aws
@@ -123,9 +123,9 @@ terraform init
 terraform apply -var='trusted_principal_arns=["arn:aws:iam::YOUR_ACCOUNT:role/YOUR_ROLE"]'
 ```
 
-Output: `auditor_role_arn` — use this ARN to assume the read-only auditor role.
+Output: `auditor_role_arn`: use this ARN to assume the read-only auditor role.
 
-### Azure — Custom Reader Role
+### Azure: Custom Reader Role
 
 ```bash
 cd terraform/azure
@@ -136,7 +136,7 @@ terraform apply \
   -var='auditor_principal_id=<SP_OBJECT_ID>'
 ```
 
-Output: `role_definition_id` — the custom least-privilege reader role scoped to the resource group.
+Output: `role_definition_id`: the custom least-privilege reader role scoped to the resource group.
 
 ---
 
